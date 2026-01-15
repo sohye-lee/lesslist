@@ -9,8 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { NavigationMain } from "~/common/components/navigation-main";
-import { NavigationTop } from "./common/components/navigation-top";
+import { NavigationMain } from "~/components/navigation-main";
+import { NavigationTop } from "./components/navigation-top";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -46,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <div>
-      <NavigationTop />
+      <NavigationTop isLoggedIn={true} />
       <NavigationMain isLoggedIn={true} />
       <Outlet />
     </div>

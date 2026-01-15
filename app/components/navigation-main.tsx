@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Link } from "react-router"
-import { HomeIcon, ScrollTextIcon, PlusIcon, BookMarkedIcon, UserIcon, DoorOpenIcon, PenIcon } from "lucide-react"
+import { HomeIcon, ScrollTextIcon, PlusIcon, BookMarkedIcon, UserIcon, DoorOpenIcon, PenIcon, PauseIcon } from "lucide-react"
 
 // import { useIsMobile } from "~/common/hooks/use-mobile"
 import {
@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "~/common/components/ui/navigation-menu"
+} from "~/components/ui/navigation-menu"
 
 const menus = [
   {
@@ -32,15 +32,21 @@ const menus = [
     icon: PlusIcon,
   },
   {
+    name: "Pause",
+    href: "/dailynotes",
+    icon: PauseIcon,
+  },
+  {
     name: "Insights",
     href: "/insights",
     icon: BookMarkedIcon,
   },
-  {
-    name: "Me",
-    href: "/profile",
-    icon: UserIcon,
-  },
+
+  // {
+  //   name: "Me",
+  //   href: "/profile",
+  //   icon: UserIcon,
+  // },
 ]
 
 const noLoggedInMenus = [
@@ -62,14 +68,14 @@ export function NavigationMain({ isLoggedIn }: { isLoggedIn: boolean }) {
   const isMobile = false
 
   return (
-    <nav className="px-4 py-1 fixed bottom-8 left-1/2 -translate-x-1/2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border shadow-lg rounded-full overflow-hidden flex justify-center items-center">
+    <nav className="px-5 py-2 fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 z-50 border shadow-lg rounded-full overflow-hidden flex justify-center items-center">
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList className="flex items-center gap-2">
           {isLoggedIn ? menus.map((menu) => (
-            <NavigationMenuItem asChild key={menu.href} className="flex flex-col items-center gap-2 py-2 px-4 rounded-full hover:bg-accent/50">
-              <Link to={menu.href} className="text-sm leading-none font-medium">
-                <menu.icon className="size-5" />
-                {menu.name}
+            <NavigationMenuItem asChild key={menu.href} className="cursor-pointer flex flex-col items-center gap-2 py-2 px-4 rounded-md hover:bg-primary/20 transition-all">
+              <Link to={menu.href} className="text-sm leading-none">
+                <menu.icon className="size-7 text-stone-700" />
+                <span className="text-xs leading-none font-sans text-stone-700">{menu.name}</span>
               </Link>
             </NavigationMenuItem>
           )) : noLoggedInMenus.map((menu) => (
